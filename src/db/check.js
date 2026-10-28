@@ -11,5 +11,3 @@ main().catch((err) => {
     console.error('Failing to connect with db', err.message);
     process.exit(1)
 })
-
-module.exports = main.value
