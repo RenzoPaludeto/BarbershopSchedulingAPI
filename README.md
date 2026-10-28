@@ -51,17 +51,14 @@ cp .env.example .env
 
 Edite o `.env` com os seus valores. O arquivo `.env` não é versionado.
 
-| Variável      | Descrição                                      | Exemplo                |
-| ------------- | ---------------------------------------------- | ---------------------- |
-| `NODE_ENV`    | Ambiente: `development`, `test` ou `production` | `development`          |
-| `PORT`        | Porta da API                                   | `3030`                 |
-| `DB_HOST`     | Host do MariaDB                                | `localhost`            |
-| `DB_PORT`     | Porta do MariaDB (opcional, padrão `3306`)     | `3306`                 |
-| `DB_USER`     | Usuário do banco (não use root)                | `barbearia_app`        |
-| `DB_PASSWORD` | Senha do usuário                               | `troque_esta_senha`    |
-| `DB_NAME`     | Nome do banco                                  | `barbearia_dev`        |
+| Variável      | Descrição                       | Exemplo             |
+| ------------- | ------------------------------- | ------------------- |
+| `PORT`        | Porta da API                    | `3030`              |
+| `DB_LOGIN`    | Usuário do banco (não use root) | `barbearia_app`     |
+| `DB_PSSWD`    | Senha do usuário                | `troque_esta_senha` |
+| `DB_DATABASE` | Nome do banco                   | `barbearia_dev`     |
 
-Todas as variáveis são obrigatórias, exceto `DB_PORT` (padrão `3306`). Se alguma obrigatória estiver ausente ou inválida, a API não inicia e informa quais são.
+Todas as variáveis são obrigatórias. Se alguma estiver ausente, a API não inicia e informa quais são. O host do banco está fixo em `localhost`.
 
 ### 4. Iniciar a API
 
@@ -76,7 +73,7 @@ npm start      # execução simples
 curl -i localhost:3030/health
 ```
 
-Resposta esperada com o banco disponível: `200` e `{"status":"ok","database":"up"}`. Se o banco estiver fora do ar, a resposta é `503` e `{"status":"error","database":"down"}`.
+Resposta esperada com o banco disponível: `200` e `{"status":"ok","db":"up"}`. Se o banco estiver fora do ar, a resposta é `503` e `{"status":"error","db":"down"}`.
 
 ## Scripts
 
@@ -139,4 +136,3 @@ Pós-MVP: alteração de agendamento (antecedência mínima de 48h, configuráve
 ## Autor
 
 Renzo Paludeto
-
