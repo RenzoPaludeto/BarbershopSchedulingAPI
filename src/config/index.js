@@ -11,6 +11,6 @@ if (missing.length > 0) {
 module.exports = {
   port: Number(process.env.PORT),
   db_login: process.env.DB_LOGIN,
-  db_psswd: process.env.DB_PSSWD,
+  db_password: process.env.DB_PASSWORD,
   db_database: process.env.DB_DATABASE,
 };
