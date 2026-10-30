@@ -5,7 +5,7 @@ const app = express();
 app.get('/health', async (req, res) => {
   try {
     await pool.query('SELECT 1');
-    res.status(200).json({ status: 'ok', db: 'up' });
+    res.json({ status: 'ok', db: 'up' });
   } catch (err) {
     console.error('Error', err.message);
     res.status(503).json({ status: 'error', db: 'down' });
