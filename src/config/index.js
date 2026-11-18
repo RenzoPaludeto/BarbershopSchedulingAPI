@@ -1,6 +1,6 @@
 require('dotenv/config');
 
-const required = ['PORT', 'DB_LOGIN', 'DB_PSSWD', 'DB_DATABASE'];
+const required = ['PORT', 'DB_LOGIN', 'DB_PASSWORD', 'DB_DATABASE'];
 
 const missing = required.filter((name) => !process.env[name]);
 
