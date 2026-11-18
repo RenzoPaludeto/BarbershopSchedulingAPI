@@ -61,17 +61,24 @@ Edite o `.env` com os seus valores. O arquivo `.env` não é versionado.
 | `DB_PASSWORD` | Senha do usuário                                | `troque_esta_senha` |
 | `DB_NAME`     | Nome do banco                                   | `barbearia_dev`     |
 
-
 Todas as variáveis são obrigatórias. Se alguma estiver ausente, a API não inicia e informa quais são. O host do banco está fixo em `localhost`.
 
-### 4. Iniciar a API
+### 4. Executar as migrações
+
+```bash
+npm run migrate
+```
+
+Cria a tabela de controle e executa as migrações pendentes em `src/db/migrations/`.
+
+### 5. Iniciar a API
 
 ```bash
 npm run dev    # desenvolvimento, reinicia ao salvar (node --watch)
 npm start      # execução simples
 ```
 
-### 5. Verificar
+### 6. Verificar
 
 ```bash
 curl -i localhost:3030/health
@@ -85,6 +92,7 @@ Resposta esperada com o banco disponível: `200` e `{"status":"ok","db":"up"}`. 
 | ---------------------- | ------------------------------------------ |
 | `npm run dev`          | Inicia a API com reinício automático       |
 | `npm start`            | Inicia a API                               |
+| `npm run migrate`      | Executa as migrações pendentes no banco    |
 | `npm run lint`         | Analisa o código com ESLint                |
 | `npm run lint:fix`     | Aplica correções automáticas do ESLint     |
 | `npm run format`       | Formata o código com Prettier              |
@@ -98,7 +106,9 @@ Resposta esperada com o banco disponível: `200` e `{"status":"ok","db":"up"}`. 
 ├── src/
 │   ├── server.js     # ponto de entrada: sobe o servidor
 │   ├── config/       # leitura e validação das variáveis de ambiente
-│   └── db/           # pool de conexões do MariaDB
+│   └── db/           # pool de conexões e migrations do MariaDB
+│       ├── migrate.js
+│       └── migrations/
 ├── .env.example
 └── eslint.config.mjs
 ```
@@ -126,7 +136,7 @@ O `app.js` fica separado do `server.js` para que os testes automatizados (marco 
 Escopo do MVP: barbearia única, login de admin e de cliente, um serviço por agendamento, grade fixa de horários, marcar e cancelar (cancelamento até 24h antes).
 
 - [x] Marco 0: fundação do repositório, configuração e conexão com o banco
-- [ ] Marco 1: modelagem do banco e requisitos
+- [x] Marco 1: modelagem do banco e requisitos
 - [ ] Marco 2: CRUD de barbeiros, serviços e clientes
 - [ ] Marco 3: regras de agenda (horários, conflitos, cancelamento)
 - [ ] Marco 4: autenticação e permissões
